@@ -6,7 +6,6 @@ import poker.domain.Card;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static poker.domain.Card.card;
 import static poker.domain.Num.ACE;
 import static poker.domain.Num.KING;
 import static poker.domain.Suit.*;
@@ -23,10 +22,10 @@ public class ThreeOfAKindEvaluatorTest {
     @BeforeMethod
     public void setUp() {
         evaluator = new ThreeOfAKindEvaluator();
-        ah = card(ACE, HEARTS);
-        ad = card(ACE, DIAMONDS);
-        as = card(ACE, SPADES);
-        kh = card(KING, HEARTS);
+        ah = new Card(ACE, HEARTS);
+        ad = new Card(ACE, DIAMONDS);
+        as = new Card(ACE, SPADES);
+        kh = new Card(KING, HEARTS);
     }
 
     public void shouldFindWhenThreeNumbersAreSame() {

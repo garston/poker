@@ -6,7 +6,6 @@ import poker.domain.Card;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static poker.domain.Card.card;
 import static poker.domain.Num.ACE;
 import static poker.domain.Num.KING;
 import static poker.domain.Suit.DIAMONDS;
@@ -23,9 +22,9 @@ public class PairEvaluatorTest {
     @BeforeMethod
     public void setUp() throws Exception {
         evaluator = new PairEvaluator();
-        ah = card(ACE, HEARTS);
-        ad = card(ACE, DIAMONDS);
-        kh = card(KING, HEARTS);
+        ah = new Card(ACE, HEARTS);
+        ad = new Card(ACE, DIAMONDS);
+        kh = new Card(KING, HEARTS);
     }
 
     public void shouldFindWhenNumbersAreSame() {

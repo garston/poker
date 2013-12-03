@@ -9,10 +9,6 @@ public class Card {
         this.suit = suit;
     }
 
-    public static Card card(Num num, Suit suit) {
-        return new Card(num, suit);
-    }
-
     public Num getNum() {
         return num;
     }
