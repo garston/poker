@@ -1,8 +1,10 @@
 package poker.util;
 
+import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import poker.domain.Card;
 import poker.domain.Num;
+import poker.domain.Suit;
 
 import java.util.List;
 import java.util.Map;
@@ -27,15 +29,33 @@ public class CardUtil {
     }
 
     public static Map<Num, List<Card>> partitionByNumber(Card... cards) {
-        Map<Num, List<Card>> map = newHashMap();
+        return partitionBy(cards, new Function<Card, Num>() {
+            @Override
+            public Num apply(Card card) {
+                return card.getNum();
+            }
+        });
+    }
+
+    public static Map<Suit, List<Card>> partitionBySuit(Card... cards) {
+        return partitionBy(cards, new Function<Card, Suit>() {
+            @Override
+            public Suit apply(Card card) {
+                return card.getSuit();
+            }
+        });
+    }
+
+    private static <T> Map<T, List<Card>> partitionBy(Card[] cards, Function<Card, T> f) {
+        Map<T, List<Card>> map = newHashMap();
         for (Card card : cards) {
-            List<Card> sameNumCards = map.get(card.getNum());
-            if (sameNumCards == null) {
-                sameNumCards = newArrayList();
-                map.put(card.getNum(), sameNumCards);
+            List<Card> sameCards = map.get(f.apply(card));
+            if (sameCards == null) {
+                sameCards = newArrayList();
+                map.put(f.apply(card), sameCards);
             }
 
-            sameNumCards.add(card);
+            sameCards.add(card);
         }
         return map;
     }
