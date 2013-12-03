@@ -1,4 +1,4 @@
-package poker.matchers;
+package poker.helpers;
 
 import com.google.common.base.Predicates;
 import com.google.common.collect.Iterables;

@@ -2,41 +2,30 @@ package poker.evaluator;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import poker.domain.Card;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static poker.domain.Num.ACE;
-import static poker.domain.Num.KING;
-import static poker.domain.Suit.*;
-import static poker.matchers.IterableContainsOnly.containsOnly;
+import static poker.helpers.CardRepo.*;
+import static poker.helpers.IterableContainsOnly.containsOnly;
 
 @Test
 public class ThreeOfAKindEvaluatorTest {
     private ThreeOfAKindEvaluator evaluator;
-    private Card ah;
-    private Card ad;
-    private Card kh;
-    private Card as;
 
     @BeforeMethod
     public void setUp() {
         evaluator = new ThreeOfAKindEvaluator();
-        ah = new Card(ACE, HEARTS);
-        ad = new Card(ACE, DIAMONDS);
-        as = new Card(ACE, SPADES);
-        kh = new Card(KING, HEARTS);
     }
 
     public void shouldFindWhenThreeNumbersAreSame() {
-        assertThat(evaluator.evaluate(ah, ad, as), containsOnly(ah, ad, as));
+        assertThat(evaluator.evaluate(AH, AD, AS), containsOnly(AH, AD, AS));
     }
 
     public void shouldNotFindWhenNumbersAreDifferent() {
-        assertThat(evaluator.evaluate(ah, ad, kh).size(), is(0));
+        assertThat(evaluator.evaluate(AH, AD, KH).size(), is(0));
     }
 
     public void shouldFindAmongstCards() {
-        assertThat(evaluator.evaluate(ah, kh, ad, as), containsOnly(ah, ad, as));
+        assertThat(evaluator.evaluate(AH, KH, AD, AS), containsOnly(AH, AD, AS));
     }
 }
