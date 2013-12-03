@@ -1,20 +1,13 @@
 package poker.evaluator;
 
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static poker.helpers.CardRepo.*;
 import static poker.helpers.IterableContainsOnly.containsOnly;
 
-@Test
-public class FlushEvaluatorTest {
-    private FlushEvaluator evaluator;
-
-    @BeforeMethod
-    public void setUp() {
-        evaluator = new FlushEvaluator();
+public class FlushEvaluatorTest extends EvaluatorTest {
+    public FlushEvaluatorTest() {
+        super(new FlushEvaluator());
     }
 
     public void shouldFindFiveCardsOfSameSuit() {

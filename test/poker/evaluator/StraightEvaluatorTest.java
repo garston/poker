@@ -1,19 +1,12 @@
 package poker.evaluator;
 
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static poker.helpers.CardRepo.*;
 import static poker.helpers.IterableContainsOnly.containsOnly;
 
-@Test
-public class StraightEvaluatorTest {
-    private StraightEvaluator evaluator;
-
-    @BeforeMethod
-    public void setUp() {
-        evaluator = new StraightEvaluator();
+public class StraightEvaluatorTest extends EvaluatorTest {
+    public StraightEvaluatorTest() {
+        super(new StraightEvaluator());
     }
 
     public void shouldFindFiveCardsInARow() {
